@@ -1,0 +1,51 @@
+name: Music Recommender MLOps Pipeline
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-run:
+    ran-on: ubuntu-latest
+    
+    env:
+      S3_BUCKET_NAME: ${{ secrets.S3_BUCKET_NAME }}
+      ENV: AWS
+      
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.9"
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }} # Optional, remove if not needed
+        aws-region: us-east-1 # Change to your region
+
+    - name: Run Data Pipeline (Download -> Preprocess -> Load S3)
+      run: python src/data/data_pipeline.py
+
+    - name: Run Model Training
+      run: python src/model/train_model.py
+
+    - name: Upload Model to Artifacts (Optional backup)
+      uses: actions/upload-artifact@v3
+      with:
+        name: trained-model
+        path: models/best_model.pkl

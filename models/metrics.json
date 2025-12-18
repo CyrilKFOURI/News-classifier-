@@ -1,0 +1,98 @@
+{
+    "LogisticRegression": {
+        "accuracy": 0.2292134831460674,
+        "report": {
+            "business": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1-score": 0.0,
+                "support": 115.0
+            },
+            "entertainment": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1-score": 0.0,
+                "support": 72.0
+            },
+            "politics": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1-score": 0.0,
+                "support": 76.0
+            },
+            "sport": {
+                "precision": 0.2292134831460674,
+                "recall": 1.0,
+                "f1-score": 0.37294332723948814,
+                "support": 102.0
+            },
+            "tech": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1-score": 0.0,
+                "support": 80.0
+            },
+            "accuracy": 0.2292134831460674,
+            "macro avg": {
+                "precision": 0.04584269662921348,
+                "recall": 0.2,
+                "f1-score": 0.07458866544789763,
+                "support": 445.0
+            },
+            "weighted avg": {
+                "precision": 0.05253882085595253,
+                "recall": 0.2292134831460674,
+                "f1-score": 0.08548363905264672,
+                "support": 445.0
+            }
+        }
+    },
+    "RandomForest": {
+        "accuracy": 0.2292134831460674,
+        "report": {
+            "business": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1-score": 0.0,
+                "support": 115.0
+            },
+            "entertainment": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1-score": 0.0,
+                "support": 72.0
+            },
+            "politics": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1-score": 0.0,
+                "support": 76.0
+            },
+            "sport": {
+                "precision": 0.2292134831460674,
+                "recall": 1.0,
+                "f1-score": 0.37294332723948814,
+                "support": 102.0
+            },
+            "tech": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1-score": 0.0,
+                "support": 80.0
+            },
+            "accuracy": 0.2292134831460674,
+            "macro avg": {
+                "precision": 0.04584269662921348,
+                "recall": 0.2,
+                "f1-score": 0.07458866544789763,
+                "support": 445.0
+            },
+            "weighted avg": {
+                "precision": 0.05253882085595253,
+                "recall": 0.2292134831460674,
+                "f1-score": 0.08548363905264672,
+                "support": 445.0
+            }
+        }
+    }
+}
