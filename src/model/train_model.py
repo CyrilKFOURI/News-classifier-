@@ -11,7 +11,6 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.pipeline import Pipeline
 from sklearn.metrics import accuracy_score, classification_report
 
-# Add src to python path to import config
 sys.path.append(str(Path(__file__).resolve().parent.parent.parent))
 from src import config
 
@@ -20,22 +19,17 @@ def train_and_evaluate():
     
     input_path = config.FINAL_DATA_PARQUET
     
-    # --- AWS: Download Data from S3 if needed ---
-    # Unless we just created it in a previous step, we might want to ensure we pull the latest from S3
-    # If the file already exists (from previous pipeline step), skip download
+    # AWS S3 Data Retrieval
     if input_path.exists():
-        print(f"Data found locally at {input_path}, skipping download.")
+        pass 
     elif os.getenv("ENV") == "AWS":
         import boto3
-        print(f"[AWS] Downloading training data from s3://{config.S3_BUCKET_NAME}/{config.S3_DATA_FINAL_KEY}...")
         try:
             s3 = boto3.client('s3')
-            # Ensure directory exists
             os.makedirs(input_path.parent, exist_ok=True)
             s3.download_file(config.S3_BUCKET_NAME, config.S3_DATA_FINAL_KEY, str(input_path))
-            print("[AWS] Download complete.")
         except Exception as e:
-            print(f"[AWS] Could not download from S3 (using local if available): {e}")
+            print(f"S3 Download Error: {e}")
 
     if not input_path.exists():
         print(f"Error: Final data not found at {input_path}")
@@ -100,16 +94,14 @@ def train_and_evaluate():
         pickle.dump(best_model, f)
     print(f"Best model saved to {config.BEST_MODEL_FILE}")
 
-    # --- AWS: Upload Model to S3 ---
+    # AWS Model Upload
     if os.getenv("ENV") == "AWS":
         import boto3
-        print(f"[AWS] Uploading model to s3://{config.S3_BUCKET_NAME}/{config.S3_MODEL_KEY}...")
         try:
             s3 = boto3.client('s3')
             s3.upload_file(str(config.BEST_MODEL_FILE), config.S3_BUCKET_NAME, config.S3_MODEL_KEY)
-            print("[AWS] Model upload complete.")
         except Exception as e:
-            print(f"[AWS] Failed to upload model: {e}")
+            print(f"Upload Error: {e}")
     
     # Save Metrics
     with open(config.METRICS_FILE, 'w') as f:

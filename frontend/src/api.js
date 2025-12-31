@@ -1,9 +1,8 @@
 export const classifyText = async (text) => {
     const API_URL = import.meta.env.VITE_API_URL;
 
-    // Simulation Mode (Default if no API URL)
     if (!API_URL) {
-        console.warn("Using Mock API Mode");
+
         return new Promise((resolve) => {
             setTimeout(() => {
                 const categories = ["Tech", "Business", "Sport", "Politics", "Entertainment"];
@@ -15,7 +14,7 @@ export const classifyText = async (text) => {
         });
     }
 
-    // Real Mode
+
     try {
         const response = await fetch(`${API_URL}/predict`, {
             method: "POST",
