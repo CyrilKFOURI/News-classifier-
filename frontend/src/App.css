@@ -1,0 +1,57 @@
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes pulse-glow {
+  0% {
+    box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
+  }
+
+  50% {
+    box-shadow: 0 0 40px rgba(0, 243, 255, 0.2);
+  }
+
+  100% {
+    box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
+  }
+}
+
+.glass-container {
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  padding: 4rem;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  animation: float 6s ease-in-out infinite, pulse-glow 4s infinite;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+h1 {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  letter-spacing: -1px;
+}
+
+.subtitle {
+  color: var(--text-muted);
+  margin-bottom: 3rem;
+  font-size: 1.1rem;
+}
