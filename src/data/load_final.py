@@ -27,8 +27,8 @@ def load_final():
     print(f"Data saved as Parquet: {parquet_path}")
 
     # --- AWS S3 UPLOAD ---
-    # We try to upload if credentials are configured
-    print(f"\n[AWS] Attempting upload to S3 Bucket: {config.S3_BUCKET_NAME}...")
+    if os.getenv("ENV") == "AWS":
+        print(f"\n[AWS] Attempting upload to S3 Bucket: {config.S3_BUCKET_NAME}...")
     try:
         s3 = boto3.client('s3')
         s3.upload_file(
