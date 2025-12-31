@@ -49,7 +49,7 @@ jobs:
         run: pytest tests/
 
       - name: Login to Amazon ECR
-        if: false # env.AWS_ACCESS_KEY_ID != ''
+        if: env.AWS_ACCESS_KEY_ID != ''
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
 
