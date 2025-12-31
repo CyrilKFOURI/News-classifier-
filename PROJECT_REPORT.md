@@ -1,4 +1,4 @@
-# Comprehensive Project Report: MLOps Music/News Recommender
+# Comprehensive Project Report: MLOps News Classifier
 
 ## 1. Executive Summary
 This project demonstrates an end-to-end MLOps pipeline for a classification system (currently News Classification as a placeholder for Music Recommendation).
